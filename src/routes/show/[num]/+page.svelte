@@ -1,7 +1,7 @@
 <script lang="ts">
-	import type { dataProp } from './+page';
+	import type { DataProp } from './+page.server';
 
-	export let data: dataProp;
+	export let data: DataProp;
 
 	$: ({ episode } = data);
 </script>
