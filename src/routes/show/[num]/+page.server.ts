@@ -1,6 +1,7 @@
+import type { UserProp } from '$db/fake_auth';
 import type { PageServerLoad } from './$types';
 
-export type DataProp = {
+export interface DataProp {
 	episode: {
 		date: number;
 		displayDate: string;
@@ -8,17 +9,20 @@ export type DataProp = {
 		title: string;
 		html: HTMLAllCollection;
 	};
-};
+	user: UserProp;
+}
 
-export const load: PageServerLoad = async ({ fetch, params, setHeaders }) => {
+export const load: PageServerLoad = async ({ fetch, params, setHeaders, locals }) => {
 	const res: Response = await fetch(`https://syntax.fm/api/shows/${params.num}`);
 	const data: DataProp = await res.json();
+	const userData: UserProp = locals.user;
 
 	setHeaders({
-		'Cache-Control': 'max-age=60'
+		'Cache-Control': 'max-age=3600'
 	});
 
 	return {
-		episode: data
+		episode: data,
+		user: userData
 	};
 };
