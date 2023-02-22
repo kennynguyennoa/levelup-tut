@@ -1,5 +1,6 @@
 <script lang="ts">
 	import Episodes from './Episodes.svelte';
+	import Header from './Header.svelte';
 
 	export let data: any;
 	$: ({ all_episodes } = data);
@@ -7,6 +8,7 @@
 
 <main>
 	<div class="main">
+		<Header />
 		<slot />
 	</div>
 	<aside>

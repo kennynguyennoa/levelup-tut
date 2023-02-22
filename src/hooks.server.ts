@@ -27,8 +27,6 @@ const logger: Handle = async ({ event, resolve }) => {
 
 //runs second because of sequence
 const authorize: Handle = ({ event, resolve }) => {
-	console.log('hi');
-
 	const user = auth();
 	event.locals.user = user;
 	return resolve(event);
