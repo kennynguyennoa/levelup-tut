@@ -1,6 +1,6 @@
 import type { UserProp } from '$db/fake_auth';
 import type { PageServerLoad } from './$types';
-import { error } from '@sveltejs/kit';
+import { error, redirect } from '@sveltejs/kit';
 
 export interface DataProp {
 	episode: {
@@ -15,9 +15,12 @@ export interface DataProp {
 }
 
 export const load: PageServerLoad = async ({ fetch, params, setHeaders, locals }) => {
+	if (!locals?.user?.id) throw redirect(307, '/');
+
 	const res: Response = await fetch(`https://syntax.fm/api/shows/${params.num}`);
 	const data: DataProp = await res.json();
 	const userData: UserProp = locals.user;
+
 	if (data.message) {
 		throw error(404, { message: data.message });
 	}
