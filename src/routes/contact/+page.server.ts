@@ -1,3 +1,5 @@
+import { fail } from '@sveltejs/kit';
+
 interface ActionProps {
 	locals: App.Locals;
 	request: Request;
@@ -5,6 +7,9 @@ interface ActionProps {
 
 export const actions = {
 	default: async ({ locals, request }: ActionProps) => {
+		if (!locals?.user?.roles?.includes('admin'))
+			return fail(401, { error_message: 'Un-Authorized' });
+
 		const data = await request.formData();
 		const email = data.get('email');
 		const name = data.get('name');
@@ -13,7 +18,7 @@ export const actions = {
 		console.log(name, email, message);
 
 		return {
-			message: 'Email sent!'
+			message: 'Email sent successfully!'
 		};
 	}
 };
