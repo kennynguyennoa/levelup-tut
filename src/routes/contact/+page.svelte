@@ -19,7 +19,22 @@
 	<p>{form.message}</p>
 {:else}
 	<div class="container">
-		<form use:enhance method="POST">
+		<form
+			use:enhance={({ form, data, action, cancel }) => {
+				//form => form data
+				//data => formData object
+				//action => url form posts
+				//cancel() => cancel form submission
+
+				return ({ result, update }) => {
+					update();
+					//result => "ActionResult"
+					//update() => runs all of the default use:enhance actions
+				};
+			}}
+			action="?/email"
+			method="POST"
+		>
 			<label for="name"
 				>Name:
 				<input type="text" name="name" id="name" required />

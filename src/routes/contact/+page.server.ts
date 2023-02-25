@@ -6,7 +6,7 @@ interface ActionProps {
 }
 
 export const actions = {
-	default: async ({ locals, request }: ActionProps) => {
+	email: async ({ locals, request }: ActionProps) => {
 		if (!locals?.user?.roles?.includes('admin'))
 			return fail(401, { error_message: 'Un-Authorized' });
 
@@ -20,5 +20,8 @@ export const actions = {
 		return {
 			message: 'Email sent successfully!'
 		};
+	},
+	test: () => {
+		console.log('hit test action');
 	}
 };
