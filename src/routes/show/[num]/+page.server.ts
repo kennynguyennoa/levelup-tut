@@ -2,6 +2,10 @@ import type { UserProp } from '$db/fake_auth';
 import type { PageServerLoad } from './$types';
 import { error, redirect } from '@sveltejs/kit';
 
+import { LUT_API } from '$env/static/private';
+
+console.log('LUT_API', LUT_API);
+
 export interface DataProp {
 	episode: {
 		date: number;
