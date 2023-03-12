@@ -1,4 +1,11 @@
 <script lang="ts">
+	import { goto } from '$app/navigation';
+	// lifcecycle, afterNavigate, beforeNavigate
+	// disableScrollhandling - Sveltekits built in scroll handling (Not recommended)
+	// goto => prgorammatically routing
+	// invalidate => load function on active page re-run
+	// invalidateAll => causes all load function to re-run
+
 	import { PUBLIC_LUT_PUB_KEY } from '$env/static/public';
 
 	import Episodes from './Episodes.svelte';
@@ -21,6 +28,7 @@
 <main>
 	<div class="main">
 		<Header />
+		<button on:click={() => goto('/contact')}>Change page</button>
 		<slot />
 	</div>
 	<aside>
