@@ -5,6 +5,8 @@
 	// goto => prgorammatically routing
 	// invalidate => load function on active page re-run
 	// invalidateAll => causes all load function to re-run
+	// preloadCode => load js code for given routes
+	// preloadData => load data from load functions for given routes 
 
 	import { PUBLIC_LUT_PUB_KEY } from '$env/static/public';
 
@@ -36,7 +38,7 @@
 	</aside>
 </main>
 
-<style>
+<style lang="postcss">
 	.loading {
 		display: grid;
 		place-items: center;
